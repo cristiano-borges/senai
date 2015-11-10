@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-ui-growl/src/growl.js"></script>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="bower_components/angular-ui-growl/css/growl.css"/>
+
+    <script src="app/js/index-controller-4.js"></script>
+    <script src="app/js/filter/maiusculo-filter.js"></script>
+    <script src="app/js/service/altert-service.js"></script>
+</head>
+<body ng-app="senai">
+
+<div ng-controller="IndexConroller" class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Cadastro de pessoa
+        </div>
+        <div class="panel-body">
+            <form novalidate
+                  name="myForm"
+                  ng-submit="salvar()">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="itNome">
+                                Nome
+                                <i style="color: red" class="fa fa-asterisk"></i>
+                            </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="itNome"
+                                   name="itNome"
+                                   ng-model="entidade.nome"
+                                   ng-required="true"
+                                   ng-minlength="3"
+                                   ng-maxlength="15"/>
+
+                            <div class="help-block"
+                                 ng-messages="myForm.itNome.$error"
+                                 ng-show="myForm.itNome.$dirty">
+                                <div ng-messages-include="app/template/messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="itEmail">
+                                E-mail
+                                <i style="color: red" class="fa fa-asterisk"></i>
+                            </label>
+                            <input type="email"
+                                   class="form-control"
+                                   id="itEmail"
+                                   name="itEmail"
+                                   ng-model="entidade.email"
+                                   ng-required="true"
+                                   ng-minlength="3"
+                                   ng-maxlength="15"/>
+
+                            <div class="help-block"
+                                 ng-messages="myForm.itEmail.$error"
+                                 ng-show="myForm.itEmail.$dirty">
+                                <div ng-messages-include="app/template/messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="itNascimento">
+                                Dt. Nascimento
+                                <i style="color: red" class="fa fa-asterisk"></i>
+                            </label>
+                            <input type="date"
+                                   class="form-control"
+                                   id="itNascimento"
+                                   name="itNascimento"
+                                   ng-model="entidade.nascimento"
+                                   ng-required="true"/>
+
+                            <div class="help-block"
+                                 ng-messages="myForm.itNascimento.$error"
+                                 ng-show="myForm.itNascimento.$dirty">
+                                <div ng-messages-include="app/template/messages.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="pull-right">
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                <i class="fa fa-save"></i> Salvar
+                            </button>
+                            <button type="button"
+                                    class="btn btn-warning"
+                                    ng-click="limpar()">
+                                <i class="fa fa-eraser"></i> Limpar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <tr>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Nascimento</th>
+                                <th>Nascimento</th>
+                            </tr>
+                            <tr ng-repeat="pessoa in listaDePessoas">
+                                <td ng-bind="pessoa.nome"></td>
+                                <td ng-bind="pessoa.email"></td>
+                                <td ng-bind="pessoa.nascimento | date:'dd/MM/yyyy'"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
